@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/biaodan.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/biaodan.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/biaodan.html">
+  <title>Contact Us | Put Idle Accounts to Work</title>
+  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Back to home"><img class="mark-img" src="antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">Put Idle Accounts to Work</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="Main navigation">
+        <a href="qa.html">Q&amp;A</a>
+        <a href="biaodan.html?type=match">Register</a>
+        <a href="biaodan.html?type=contact">Contact</a>
+      </nav>
+        <a class="lang" href="zh/biaodan.html?type=contact" hreflang="zh-CN" lang="zh-CN" aria-label="切换到中文">中文</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap form-page">
+    <div class="form-intro">
+      <h1 class="page-title" id="site-title">Contact Us</h1>
+      <p class="page-intro" id="page-intro">Tell us what you need or what is on your mind. Your message is routed automatically and we will get back to you quickly.</p>
+    </div>
+
+    <form id="feedback-form" class="form">
+      <!-- Language flag: English -->
+      <input type="hidden" id="language" value="en">
+
+      <!-- 称呼 -->
+      <div class="form-group">
+        <label for="name">
+          Name / Nickname<span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name or nickname"
+          maxlength="200"
+          required>
+      </div>
+
+      <!-- 邮箱 -->
+      <div class="form-group">
+        <label for="email">
+          Email<span class="required">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="name@example.com"
+          required>
+      </div>
+
+      <!-- 事项分类 -->
+      <div class="form-group">
+        <label for="topic">
+          Topic<span class="required">*</span>
+        </label>
+        <select id="topic" required>
+          <option value="" selected disabled>Please select a topic</option>
+          <option value="注册匹配">Register for a Match</option>
+          <option value="常规咨询">General Inquiry</option>
+        </select>
+      </div>
+
+      <!-- 详细说明 -->
+      <div class="form-group">
+        <label for="message">
+          Message<span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          rows="4"
+          maxlength="10000"
+          placeholder="Please describe your question or request in detail..."
+          required></textarea>
+      </div>
+
+      <!-- 上传截图（可选） -->
+      <div class="form-group">
+        <label>Screenshot (optional)</label>
+        <label class="upload-box" for="screenshot">
+          <div class="upload-text">Click to upload a screenshot</div>
+          <div class="upload-hint">JPG, PNG, WEBP or GIF · Max 5 MB</div>
+          <input
+            type="file"
+            id="screenshot"
+            accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif">
+        </label>
+
+        <!-- 图片预览 -->
+        <div class="preview-container" id="preview-container">
+          <img id="image-preview" src="" alt="Screenshot preview">
+          <div class="file-name" id="file-name"></div>
+          <button type="button" class="remove-image" id="remove-image">Remove image</button>
+        </div>
+      </div>
+
+      <p class="form-note">What you submit is sent to us by email so we can reply. Please do not include passwords, card details or wallet keys.</p>
+
+      <!-- 提交按钮 -->
+      <button type="submit" id="submit-btn" class="btn btn-block">Submit</button>
+      <div id="status" class="status-msg"></div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="qa.html">Q&amp;A</a>
+        <a href="biaodan.html?type=match">Register</a>
+        <a href="biaodan.html?type=contact">Contact</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">Results vary and no income is guaranteed. Participation involves risk, including loss of time or funds. Nothing on this site is investment, financial, tax or legal advice. Please review all terms before you commit. This site is not affiliated with any social media or e-commerce platform.</p>
+    </div>
+  </footer>
+
+<script>
+  // 页面标题与导航高亮：从首页「注册匹配」进来时显示匹配文案，其余显示「联系我们」。
+  // 只改文字，不影响下面的表单提交。
+  (function () {
+    var type = new URLSearchParams(location.search).get('type') === 'match' ? 'match' : 'contact';
+    var text = {
+      match: { title: 'Register for a Match', intro: 'Fill in the details below. Once you submit, we will look for a good match and contact you by email.' },
+      contact: { title: 'Contact Us', intro: 'Tell us what you need or what is on your mind. Your message is routed automatically and we will get back to you quickly.' }
+    }[type];
+    document.getElementById('site-title').textContent = text.title;
+    document.getElementById('page-intro').textContent = text.intro;
+    document.title = text.title + ' | Put Idle Accounts to Work';
+    // 默认选项：从「注册匹配」进来选「注册匹配」，其余（联系我们、直接打开）选「常规咨询」
+    document.getElementById('topic').value = type === 'match' ? '注册匹配' : '常规咨询';
+    document.querySelector('.lang').href = 'zh/biaodan.html?type=' + type;
+    // Hint in the message box: for "Register for a Match", follow the Quick Q&A; otherwise keep the default hint
+    var topic = document.getElementById('topic'), msg = document.getElementById('message');
+    var defaultHint = msg.getAttribute('placeholder');
+    function updateHint() {
+      msg.setAttribute('placeholder', topic.value === '注册匹配' ? 'Please fill in the relevant details as described in the Quick Q&A.' : defaultHint);
+    }
+    topic.addEventListener('change', updateHint);
+    updateHint();
+    var href = 'biaodan.html?type=' + type;
+    document.querySelectorAll('.top-nav a, .foot-nav a').forEach(function (a) {
+      if (a.getAttribute('href') === href) a.setAttribute('aria-current', 'page');
+    });
+  })();
+</script>
+
+<script>
+  // Cloudflare Worker 接口地址
+  const WORKER_ENDPOINT = "https://site-mailer.aimagbpt.workers.dev";
+
+  const form = document.getElementById('feedback-form');
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status');
+  const screenshotInput = document.getElementById('screenshot');
+  const previewContainer = document.getElementById('preview-container');
+  const imagePreview = document.getElementById('image-preview');
+  const fileName = document.getElementById('file-name');
+  const removeImageBtn = document.getElementById('remove-image');
+
+  // 图片最大体积：5 MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  let selectedImage = null;
+
+  // 监听文件选择
+  screenshotInput.addEventListener('change', () => {
+    const file = screenshotInput.files[0];
+    if (!file) return;
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      alert('Unsupported format. Please upload a JPG, PNG, WEBP or GIF image.');
+      screenshotInput.value = '';
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      alert('The image must be 5 MB or smaller. Please compress it and try again.');
+      screenshotInput.value = '';
+      return;
+    }
+
+    selectedImage = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.src = e.target.result;
+      fileName.innerText = file.name;
+      previewContainer.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // 删除已选图片
+  removeImageBtn.addEventListener('click', () => {
+    selectedImage = null;
+    screenshotInput.value = '';
+    imagePreview.src = '';
+    previewContainer.style.display = 'none';
+  });
+
+  // 文件转 Base64 编码
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Could not read the image. Please choose it again.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // 表单提交处理
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Submitting...";
+    status.style.display = "none";
+
+    // 智能提取主域名
+    const hostname = window.location.hostname;
+    let currentDomain = 'antaiy.com'; // 本地测试默认回退域名
+
+    if (hostname && hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      const parts = hostname.split('.');
+      if (parts.length >= 2) {
+        currentDomain = parts.slice(-2).join('.');
+      }
+    }
+
+    try {
+      let screenshot = null;
+      if (selectedImage) {
+        screenshot = {
+          name: selectedImage.name,
+          type: selectedImage.type,
+          data: await fileToBase64(selectedImage)
+        };
+      }
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        topic: document.getElementById('topic').value,
+        message: document.getElementById('message').value.trim(),
+        domain: currentDomain,
+        language: document.getElementById('language').value,
+        screenshot: screenshot
+      };
+
+      const res = await fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        status.className = "status-msg success";
+        status.innerText = "Thank you! A confirmation email is on its way to your inbox.";
+        status.style.display = "block";
+
+        form.reset();
+        selectedImage = null;
+        imagePreview.src = '';
+        previewContainer.style.display = 'none';
+      } else {
+        throw new Error(result.message || result.error || "Submission failed. Please try again later.");
+      }
+    } catch (err) {
+      status.className = "status-msg error";
+      status.innerText = err.message;
+      status.style.display = "block";
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "Submit";
+    }
+  });
+</script>
+
+</body>
+</html>

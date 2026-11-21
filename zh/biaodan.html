@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/biaodan.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/biaodan.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/biaodan.html">
+  <title>联系我们｜闲置账号，变成资产</title>
+  <link rel="stylesheet" href="../styles.css?v=11">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="返回首页"><img class="mark-img" src="../antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">闲置账号，变成资产</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="主导航">
+        <a href="qa.html">快速问答</a>
+        <a href="biaodan.html?type=match">注册匹配</a>
+        <a href="biaodan.html?type=contact">联系我们</a>
+      </nav>
+        <a class="lang" href="../biaodan.html?type=contact" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap form-page">
+    <div class="form-intro">
+      <h1 class="page-title" id="site-title">联系我们</h1>
+      <p class="page-intro" id="page-intro">填写并提交您的需求或问题，系统将自动分配并快速响应。</p>
+    </div>
+
+    <form id="feedback-form" class="form">
+      <!-- 语言标识：中文 -->
+      <input type="hidden" id="language" value="zh">
+
+      <!-- 称呼 -->
+      <div class="form-group">
+        <label for="name">
+          称呼 / 昵称<span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          placeholder="请输入您的姓名或昵称"
+          maxlength="200"
+          required>
+      </div>
+
+      <!-- 邮箱 -->
+      <div class="form-group">
+        <label for="email">
+          电子邮箱<span class="required">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="name@example.com"
+          required>
+      </div>
+
+      <!-- 事项分类 -->
+      <div class="form-group">
+        <label for="topic">
+          咨询事项<span class="required">*</span>
+        </label>
+        <select id="topic" required>
+          <option value="" selected disabled>请选择咨询类别</option>
+          <option value="注册匹配">注册匹配</option>
+          <option value="常规咨询">常规咨询</option>
+        </select>
+      </div>
+
+      <!-- 详细说明 -->
+      <div class="form-group">
+        <label for="message">
+          详细说明<span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          rows="4"
+          maxlength="10000"
+          placeholder="请详细描述您遇到的问题或诉求..."
+          required></textarea>
+      </div>
+
+      <!-- 上传截图（可选） -->
+      <div class="form-group">
+        <label>截图附件（可选）</label>
+        <label class="upload-box" for="screenshot">
+          <div class="upload-text">点击上传相关问题截图</div>
+          <div class="upload-hint">支持 JPG、PNG、WEBP 或 GIF · 最大 5 MB</div>
+          <input
+            type="file"
+            id="screenshot"
+            accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif">
+        </label>
+
+        <!-- 图片预览 -->
+        <div class="preview-container" id="preview-container">
+          <img id="image-preview" src="" alt="截图预览">
+          <div class="file-name" id="file-name"></div>
+          <button type="button" class="remove-image" id="remove-image">删除图片</button>
+        </div>
+      </div>
+
+      <p class="form-note">提交的信息会通过邮件发送给我们，用于回复你的咨询。请不要填写密码、银行卡或钱包私钥等敏感信息。</p>
+
+      <!-- 提交按钮 -->
+      <button type="submit" id="submit-btn" class="btn btn-block">立即提交</button>
+      <div id="status" class="status-msg"></div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="底部导航">
+        <a href="index.html">首页</a>
+        <a href="qa.html">快速问答</a>
+        <a href="biaodan.html?type=match">注册匹配</a>
+        <a href="biaodan.html?type=contact">联系我们</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">收益因人而异，不保证任何收入，参与可能有时间或资金损失的风险。本站内容不构成投资、财务、税务或法律建议，请在投入前自行了解并确认所有条款。本站与任何社交或电商平台无隶属关系。</p>
+    </div>
+  </footer>
+
+<script>
+  // 页面标题与导航高亮：从首页「注册匹配」进来时显示匹配文案，其余显示「联系我们」。
+  // 只改文字，不影响下面的表单提交。
+  (function () {
+    var type = new URLSearchParams(location.search).get('type') === 'match' ? 'match' : 'contact';
+    var text = {
+      match: { title: '注册匹配', intro: '填写下面的信息，提交后我们会为你寻找合适的匹配，并通过邮箱联系你。' },
+      contact: { title: '联系我们', intro: '填写并提交您的需求或问题，系统将自动分配并快速响应。' }
+    }[type];
+    document.getElementById('site-title').textContent = text.title;
+    document.getElementById('page-intro').textContent = text.intro;
+    document.title = text.title + '｜闲置账号，变成资产';
+    // 默认选项：从「注册匹配」进来选「注册匹配」，其余（联系我们、直接打开）选「常规咨询」
+    document.getElementById('topic').value = type === 'match' ? '注册匹配' : '常规咨询';
+    document.querySelector('.lang').href = '../biaodan.html?type=' + type;
+    // 详细说明框的提示：选「注册匹配」时请按快速问答的提示填写，其余用默认提示
+    var topic = document.getElementById('topic'), msg = document.getElementById('message');
+    var defaultHint = msg.getAttribute('placeholder');
+    function updateHint() {
+      msg.setAttribute('placeholder', topic.value === '注册匹配' ? '请按照「快速问答」的提示填写相关信息。' : defaultHint);
+    }
+    topic.addEventListener('change', updateHint);
+    updateHint();
+    var href = 'biaodan.html?type=' + type;
+    document.querySelectorAll('.top-nav a, .foot-nav a').forEach(function (a) {
+      if (a.getAttribute('href') === href) a.setAttribute('aria-current', 'page');
+    });
+  })();
+</script>
+
+<script>
+  // Cloudflare Worker 接口地址
+  const WORKER_ENDPOINT = "https://site-mailer.aimagbpt.workers.dev";
+
+  const form = document.getElementById('feedback-form');
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status');
+  const screenshotInput = document.getElementById('screenshot');
+  const previewContainer = document.getElementById('preview-container');
+  const imagePreview = document.getElementById('image-preview');
+  const fileName = document.getElementById('file-name');
+  const removeImageBtn = document.getElementById('remove-image');
+
+  // 图片最大体积：5 MB
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  let selectedImage = null;
+
+  // 监听文件选择
+  screenshotInput.addEventListener('change', () => {
+    const file = screenshotInput.files[0];
+    if (!file) return;
+
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      alert('不支持的格式，请上传 JPG、PNG、WEBP 或 GIF 图片。');
+      screenshotInput.value = '';
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
+      alert('图片大小不能超过 5 MB，请压缩后重试。');
+      screenshotInput.value = '';
+      return;
+    }
+
+    selectedImage = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imagePreview.src = e.target.result;
+      fileName.innerText = file.name;
+      previewContainer.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  });
+
+  // 删除已选图片
+  removeImageBtn.addEventListener('click', () => {
+    selectedImage = null;
+    screenshotInput.value = '';
+    imagePreview.src = '';
+    previewContainer.style.display = 'none';
+  });
+
+  // 文件转 Base64 编码
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('图片读取失败，请重新选择上传。'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // 表单提交处理
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "正在提交...";
+    status.style.display = "none";
+
+    // 智能提取主域名
+    const hostname = window.location.hostname;
+    let currentDomain = 'antaiy.com'; // 本地测试默认回退域名
+
+    if (hostname && hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      const parts = hostname.split('.');
+      if (parts.length >= 2) {
+        currentDomain = parts.slice(-2).join('.');
+      }
+    }
+
+    try {
+      let screenshot = null;
+      if (selectedImage) {
+        screenshot = {
+          name: selectedImage.name,
+          type: selectedImage.type,
+          data: await fileToBase64(selectedImage)
+        };
+      }
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        topic: document.getElementById('topic').value,
+        message: document.getElementById('message').value.trim(),
+        domain: currentDomain,
+        language: document.getElementById('language').value,
+        screenshot: screenshot
+      };
+
+      const res = await fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        status.className = "status-msg success";
+        status.innerText = "提交成功！确认邮件已发送至您的邮箱，请注意查收。";
+        status.style.display = "block";
+
+        form.reset();
+        selectedImage = null;
+        imagePreview.src = '';
+        previewContainer.style.display = 'none';
+      } else {
+        throw new Error(result.message || result.error || "提交失败，请稍后再试。");
+      }
+    } catch (err) {
+      status.className = "status-msg error";
+      status.innerText = err.message;
+      status.style.display = "block";
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "立即提交";
+    }
+  });
+</script>
+
+</body>
+</html>
