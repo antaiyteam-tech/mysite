@@ -136,7 +136,7 @@
   (function () {
     var type = new URLSearchParams(location.search).get('type') === 'match' ? 'match' : 'contact';
     var text = {
-      match: { title: '注册匹配', intro: '填写下面的信息，提交后我们会为你寻找合适的匹配，并通过邮箱联系你。' },
+      match: { title: '注册匹配', intro: '填写下面的信息，提交后我们会为你寻找合适的匹配，并通过邮箱联系你。匹配序号会发到你的邮箱，如果几分钟内没收到，请查看垃圾邮件箱，并把 ceo@antaiy.com 加入联系人。' },
       contact: { title: '联系我们', intro: '填写并提交您的需求或问题，系统将自动分配并快速响应。' }
     }[type];
     document.getElementById('site-title').textContent = text.title;
@@ -277,7 +277,9 @@
 
       if (res.ok && result.success) {
         status.className = "status-msg success";
-        status.innerText = "提交成功！确认邮件已发送至您的邮箱，请注意查收。";
+        status.innerText = payload.topic === '注册匹配'
+          ? "匹配序号已发送到您的邮箱，如果几分钟内没收到，请查看垃圾邮件箱，并把 ceo@antaiy.com 加入联系人。"
+          : "提交成功！确认邮件已发送至您的邮箱，请注意查收。";
         status.style.display = "block";
 
         form.reset();
