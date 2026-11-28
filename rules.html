@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/rules.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/rules.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/rules.html">
+  <meta name="description" content="Rules and privacy: matching fee, how matching works, personal information.">
+  <title>Rules &amp; Privacy | antaiy AI Co-creation</title>
+  <link rel="stylesheet" href="styles.css?v=28">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Back to home"><img class="mark-img" src="antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">antaiy AI Co-creation</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="Main navigation">
+        <a href="rules.html" aria-current="page">Rules &amp; Privacy</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+        <a class="lang" href="zh/rules.html" hreflang="zh-CN" lang="zh-CN" aria-label="切换到中文">中文</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="sr-only">Rules &amp; Privacy</h1>
+
+    <section class="wrap qa-section" aria-label="Rules and privacy">
+      <div class="qa-list">
+        <article class="qa-item"><h2 class="qa-q">Platform services</h2><p class="qa-a">We verify mentors and match members. After a match, how you work together, what you charge, and how you split profits is up to the two of you.</p></article>
+        <article class="qa-item"><h2 class="qa-q">The matching fee</h2><p class="qa-a">Basic 1.3 SOL, Intermediate 10.3 SOL, Advanced 100.3 SOL. The payment address changes daily. The matching fee is non-refundable.</p></article>
+        <article class="qa-item"><h2 class="qa-q">How matching works</h2><p class="qa-a">Matches are made in queue order, by level and by when we receive your fee. If there are fewer members than mentors, mentors wait; if there are fewer mentors, members wait.</p></article>
+        <article class="qa-item"><h2 class="qa-q">Personal information</h2><p class="qa-a">When we make a match, we share your name and email with the other party. We never sell your information. By checking the box and submitting, you agree to this page.</p></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="rules.html" aria-current="page">Rules &amp; Privacy</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">We don’t guarantee income. Not investment advice.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script>
+    // 向下滚动一小段后显示「回到顶部」，回到页面顶部时自动隐藏
+    (function () {
+      var btn = document.getElementById('to-top');
+      var ticking = false;
+      function update() { btn.classList.toggle('is-visible', window.scrollY > 160); ticking = false; }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0 }); }); // 平滑滚动由 CSS 的 scroll-behavior 控制
+      update();
+    })();
+  </script>
+  <script>
+    // 复制按钮：先用剪贴板接口，不行就用旧方法；都不行就提示长按（部分内置浏览器不支持一键复制）
+    (function () {
+      function legacyCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+        document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, text.length);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        return ok;
+      }
+      function selectText(node) {
+        if (!node || !window.getSelection) return;
+        var r = document.createRange(); r.selectNodeContents(node);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('.copy-btn[data-copy]'), function (b) {
+        var label = b.textContent, timer;
+        function flash(msg) {
+          b.textContent = msg;
+          clearTimeout(timer);
+          timer = setTimeout(function () { b.textContent = label; }, 1800);
+        }
+        b.addEventListener('click', function () {
+          var text = b.getAttribute('data-copy');
+          function fallback() {
+            if (legacyCopy(text)) { flash(b.getAttribute('data-done')); }
+            else { selectText(b.nextElementSibling); flash(b.getAttribute('data-fail')); }
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { flash(b.getAttribute('data-done')); }, fallback);
+          } else { fallback(); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

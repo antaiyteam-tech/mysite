@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/">
+  <meta name="description" content="匹配孵化。">
+  <title>安泰Ai共创｜匹配孵化</title>
+  <link rel="stylesheet" href="../styles.css?v=28">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="返回首页"><img class="mark-img" src="../antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">安泰Ai共创</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="主导航">
+        <a href="rules.html">规则与隐私</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+        <a class="lang" href="../" hreflang="en" lang="en" aria-label="Switch to English">English</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-title">
+          <h1><span>匹配</span><span>孵化</span></h1>
+        </div>
+
+        <figure class="hero-figure">
+          <svg class="hex" id="hex" viewBox="-615 -545 1230 1090" role="img" aria-label="六角匹配图：名师与高徒、贵人与好人、黑马与伯乐，两两匹配">
+            <circle class="ring" r="400"/>
+
+            <!-- 虚线：每条线的颜色取对面顶点的颜色 -->
+            <g class="dashes">
+              <line class="dash c-blue"  x1="-346.41" y1="-200" x2="346.41" y2="-200"/>
+              <line class="dash c-red"   x1="346.41"  y1="-200" x2="0"      y2="400"/>
+              <line class="dash c-green" x1="0"       y1="400"  x2="-346.41" y2="-200"/>
+              <line class="dash c-red"   x1="0"       y1="-400" x2="-346.41" y2="200"/>
+              <line class="dash c-blue"  x1="-346.41" y1="200"  x2="346.41" y2="200"/>
+              <line class="dash c-green" x1="346.41"  y1="200"  x2="0"      y2="-400"/>
+            </g>
+
+            <!-- 太极：外层负责淡入，内层负责转动 -->
+            <g class="taiji" transform="scale(1.66)">
+              <g class="taiji-spin">
+                <circle r="56" fill="#fff" stroke="#000" stroke-width="2.4"/>
+                <path d="M0,-56 A56,56 0 0 1 0,56 A28,28 0 0 1 0,0 A28,28 0 0 0 0,-56 Z" fill="#000"/>
+                <circle cx="0" cy="28" r="9" fill="#fff"/>
+                <circle cx="0" cy="-28" r="9" fill="#000"/>
+              </g>
+            </g>
+
+            <!-- 顶点和名称 -->
+            <g class="node c-blue"><circle cx="0" cy="-400" r="28"/><text class="label" x="0" y="-455" text-anchor="middle">名师</text></g>
+            <g class="node c-green"><circle cx="346.41" cy="-200" r="28"/><text class="label" x="390" y="-175" text-anchor="start">好人</text></g>
+            <g class="node c-red"><circle cx="346.41" cy="200" r="28"/><text class="label" x="390" y="225" text-anchor="start">伯乐</text></g>
+            <g class="node c-blue"><circle cx="0" cy="400" r="28"/><text class="label" x="0" y="509" text-anchor="middle">高徒</text></g>
+            <g class="node c-green"><circle cx="-346.41" cy="200" r="28"/><text class="label" x="-390" y="225" text-anchor="end">贵人</text></g>
+            <g class="node c-red"><circle cx="-346.41" cy="-200" r="28"/><text class="label" x="-390" y="-175" text-anchor="end">黑马</text></g>
+          </svg>
+        </figure>
+
+        <div class="hero-cta">
+          <a class="btn" href="biaodan.html">注册匹配</a>
+          <a class="btn btn-ghost" href="contact.html">联系我们</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="页脚导航">
+        <a href="index.html" aria-current="page">首页</a>
+        <a href="rules.html">规则与隐私</a>
+        <a href="contact.html">联系我们</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">不保证收益，非投资建议。</p>
+    </div>
+  </footer>
+
+  <script>
+    // 字体就绪后再开始动画，避免名称闪一下换字体；最多等 1.2 秒
+    (function () {
+      var hex = document.getElementById('hex');
+      var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+      Promise.race([ready, new Promise(function (r) { setTimeout(r, 1200); })]).then(function () {
+        requestAnimationFrame(function () { requestAnimationFrame(function () { hex.classList.add('play'); }); });
+      });
+    })();
+  </script>
+</body>
+</html>

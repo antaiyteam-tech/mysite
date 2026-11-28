@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/biaodan.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/biaodan.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/biaodan.html">
+  <title>Register for a Match | antaiy AI Co-creation</title>
+  <link rel="stylesheet" href="styles.css?v=28">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Back to home"><img class="mark-img" src="antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">antaiy AI Co-creation</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="Main navigation">
+        <a href="rules.html">Rules &amp; Privacy</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+        <a class="lang" href="zh/biaodan.html" hreflang="zh-CN" lang="zh-CN" aria-label="切换到中文">中文</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap form-page">
+    <div class="form-intro">
+      <h1 class="page-title" id="site-title">Register for a Match</h1>
+    </div>
+
+    <form id="feedback-form" class="form">
+      <!-- Language flag: English -->
+      <input type="hidden" id="language" value="en">
+      <div class="hp-field" aria-hidden="true"><label for="hp_url">Leave this field empty</label><input type="text" id="hp_url" name="hp_url" tabindex="-1" autocomplete="off"></div>
+
+      <!-- 称呼 -->
+      <div class="form-group">
+        <label for="name">
+          Name / Nickname<span class="required">*</span>
+        </label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name or nickname"
+          maxlength="200"
+          required>
+      </div>
+
+      <!-- 邮箱 -->
+      <div class="form-group">
+        <label for="email">
+          Email<span class="required">*</span>
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="name@example.com"
+          required>
+      </div>
+
+      <!-- 事项分类 -->
+      <input type="hidden" id="topic" value="注册匹配">
+
+      <!-- 详细说明 -->
+      <div class="form-group">
+        <label for="message">
+          Details<span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          rows="5"
+          maxlength="10000"
+          placeholder="Briefly describe your accounts or stores, past successes, and skills. Mentors: after you receive our email, please reply with supporting documents."
+          required></textarea>
+      </div>
+
+      <!-- 收款地址（仅「注册匹配」显示） -->
+      <div class="form-group" id="pay-box" style="display:none">
+        <div class="pay-row">
+          <code class="pay-address" id="pay-address">Loading address…</code>
+          <button type="button" class="copy-btn" id="copy-address">Copy</button>
+        </div>
+        <p class="form-note">Send SOL (the amount depends on your level) to the current Solana address, then upload the transfer screenshot below.</p>
+        <label class="consent"><input type="checkbox" id="consent"><span>I have read and agree to the <a href="rules.html" target="_blank" rel="noopener">Rules &amp; Privacy</a>.</span></label>
+      </div>
+
+      <!-- 上传截图（注册匹配必选，其余可选） -->
+      <div class="form-group">
+        <label id="shot-label">Screenshot (optional)</label>
+        <label class="upload-box" for="screenshot">
+          <div class="upload-text" id="upload-text">Click to upload a screenshot</div>
+          <div class="upload-hint">JPG, PNG, WEBP, GIF or HEIC · Large images are compressed automatically</div>
+          <input
+            type="file"
+            id="screenshot"
+            accept=".jpg,.jpeg,.png,.webp,.gif,.heic,.heif,image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif">
+        </label>
+
+        <!-- 图片预览 -->
+        <div class="preview-container" id="preview-container">
+          <img id="image-preview" src="" alt="Screenshot preview">
+          <div class="file-name" id="file-name"></div>
+          <button type="button" class="remove-image" id="remove-image">Remove image</button>
+        </div>
+      </div>
+
+      <p class="form-note">What you submit is sent to us by email so we can verify and match you. Please do not include passwords, card details or wallet keys.</p>
+
+      <!-- 提交按钮 -->
+      <button type="submit" id="submit-btn" class="btn btn-block">Submit</button>
+      <div id="status" class="status-msg"></div>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="rules.html">Rules &amp; Privacy</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">We don’t guarantee income. Not investment advice.</p>
+    </div>
+  </footer>
+
+  <!-- 规则与隐私弹窗：点勾选框或链接打开，读完点「I have read and agree」自动勾选 -->
+  <div class="rules-modal" id="rules-modal" hidden role="dialog" aria-modal="true" aria-labelledby="rules-title">
+    <div class="rules-card">
+      <div class="rules-head"><h2 id="rules-title">Rules &amp; Privacy</h2><button type="button" class="rules-close" id="rules-close" aria-label="Close">&times;</button></div>
+      <div class="rules-body" id="rules-body">Loading…</div>
+    </div>
+  </div>
+
+
+<script>
+  // Cloudflare Worker 接口地址
+  const WORKER_ENDPOINT = "https://api.antaiy.com";
+  // 防刷：页面打开后至少 5 秒才允许提交（不够会自动等，用户只会看到「提交中」多停几秒）
+  const PAGE_OPENED = Date.now();
+  const MIN_FILL_MS = 5000;
+
+  const form = document.getElementById('feedback-form');
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status');
+  const screenshotInput = document.getElementById('screenshot');
+  const previewContainer = document.getElementById('preview-container');
+  const imagePreview = document.getElementById('image-preview');
+  const fileName = document.getElementById('file-name');
+  const removeImageBtn = document.getElementById('remove-image');
+
+  // 图片：最终提交的文件不超过 5 MB；选择时允许更大的原图（最大 30 MB），页面会自动压缩，苹果 HEIC 会转成 JPG
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const MAX_RAW_SIZE = 30 * 1024 * 1024;
+  const TARGET_SIZE = 2 * 1024 * 1024;
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/heic', 'image/heif'];
+  let selectedImage = null;
+  let preparing = false;
+
+  function isHeic(file) { return /^image\/hei[cf]$/i.test(file.type) || /\.hei[cf]$/i.test(file.name); }
+  function isAllowed(file) { return isHeic(file) || ALLOWED_TYPES.includes(file.type); }
+
+  async function decodeImage(file) {
+    if (window.createImageBitmap) {
+      try { return await createImageBitmap(file); } catch (e) { /* 换一种方式再试 */ }
+    }
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('decode failed')); };
+      img.src = url;
+    });
+  }
+
+  // 按总像素数缩小并转成 JPEG：普通截图保持清晰，长截图也不会被压得看不清
+  async function renderJpeg(file, maxPixels, quality) {
+    const img = await decodeImage(file);
+    const w = img.width || img.naturalWidth, h = img.height || img.naturalHeight;
+    if (!w || !h) throw new Error('decode failed');
+    const scale = Math.min(1, Math.sqrt(maxPixels / (w * h)));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.max(1, Math.round(w * scale));
+    canvas.height = Math.max(1, Math.round(h * scale));
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    if (img.close) img.close();
+    return new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', quality));
+  }
+
+  // 2 MB 以内的普通图片原样使用；HEIC 和更大的图片转成 JPEG 并逐步压缩
+  async function prepareImage(file) {
+    const heic = isHeic(file);
+    if (!heic && file.size <= TARGET_SIZE) return file;
+    const baseName = (file.name || 'screenshot').replace(/\.[^.]+$/, '') || 'screenshot';
+    const steps = [[8e6, 0.85], [6e6, 0.8], [4.5e6, 0.75], [3e6, 0.7], [2e6, 0.65]];
+    let best = null;
+    try {
+      for (const [pixels, quality] of steps) {
+        const blob = await renderJpeg(file, pixels, quality);
+        if (!blob) continue;
+        best = blob;
+        if (blob.size <= TARGET_SIZE) break;
+      }
+    } catch (e) { best = null; }
+    if (best && best.size <= MAX_FILE_SIZE) return new File([best], baseName + '.jpg', { type: 'image/jpeg' });
+    // 浏览器处理不了（例如电脑 Chrome 打开 HEIC）：原文件不超过 5 MB 就原样提交
+    if (file.size <= MAX_FILE_SIZE) {
+      return (heic && !/^image\/hei[cf]$/i.test(file.type)) ? new File([file], file.name, { type: 'image/heic' }) : file;
+    }
+    throw new Error('too large');
+  }
+
+  imagePreview.addEventListener('error', () => { imagePreview.style.display = 'none'; });
+
+  // 监听文件选择
+  screenshotInput.addEventListener('change', async () => {
+    const file = screenshotInput.files[0];
+    if (!file) return;
+
+    if (!isAllowed(file)) {
+      alert('Unsupported format. Please upload a JPG, PNG, WEBP, GIF or HEIC image.');
+      screenshotInput.value = '';
+      return;
+    }
+
+    if (file.size > MAX_RAW_SIZE) {
+      alert('The image is too large (over 30 MB). Please choose a smaller one.');
+      screenshotInput.value = '';
+      return;
+    }
+
+    preparing = true;
+    btn.disabled = true;
+    imagePreview.removeAttribute('src');
+    fileName.innerText = 'Processing image…';
+    previewContainer.style.display = 'block';
+    try {
+      const prepared = await prepareImage(file);
+      selectedImage = prepared;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imagePreview.style.display = '';
+        imagePreview.src = e.target.result;
+        fileName.innerText = prepared.name + ' · ' + Math.max(1, Math.round(prepared.size / 1024)) + ' KB';
+      };
+      reader.readAsDataURL(prepared);
+    } catch (err) {
+      alert('This image could not be compressed enough. Please take a normal screenshot and try again.');
+      selectedImage = null;
+      screenshotInput.value = '';
+      previewContainer.style.display = 'none';
+    } finally {
+      preparing = false;
+      btn.disabled = false;
+    }
+  });
+
+  // 删除已选图片
+  removeImageBtn.addEventListener('click', () => {
+    selectedImage = null;
+    screenshotInput.value = '';
+    imagePreview.src = '';
+    previewContainer.style.display = 'none';
+  });
+
+  // 文件转 Base64 编码
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(new Error('Could not read the image. Please choose it again.'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ---- 注册匹配：显示今日收款地址，并要求上传转账截图 ----
+  const MATCH_TOPIC = '注册匹配';
+  const RULES_VERSION = '2026-11-28'; // 规则与隐私的更新日期，改了规则页就同步改这里
+  const topicSelect = document.getElementById('topic');
+  const payBox = document.getElementById('pay-box');
+  const payAddressEl = document.getElementById('pay-address');
+  const copyBtn = document.getElementById('copy-address');
+  const shotLabel = document.getElementById('shot-label');
+  const uploadText = document.getElementById('upload-text');
+  let payAddress = null;
+
+  async function loadPayAddress() {
+    payAddressEl.textContent = 'Loading address…';
+    try {
+      const r = await fetch(WORKER_ENDPOINT + '/pay-address', { cache: 'no-store' });
+      const d = await r.json();
+      if (!r.ok || !d.success || !d.address) throw new Error('no address');
+      payAddress = d.address;
+      payAddressEl.textContent = payAddress;
+    } catch (e) {
+      payAddress = null;
+      payAddressEl.textContent = 'Could not load the address. Please refresh the page and try again.';
+    }
+  }
+
+  function updateMode() {
+    const isMatch = topicSelect.value === MATCH_TOPIC;
+    payBox.style.display = isMatch ? 'block' : 'none';
+    shotLabel.innerHTML = isMatch ? 'Transfer screenshot<span class="required">*</span>' : 'Screenshot (optional)';
+    uploadText.textContent = isMatch ? 'Click to upload your transfer screenshot' : 'Click to upload a screenshot';
+    if (isMatch && !payAddress) loadPayAddress();
+  }
+  topicSelect.addEventListener('change', updateMode);
+
+  copyBtn.addEventListener('click', async () => {
+    if (!payAddress) return;
+    let ok = false;
+    try { await navigator.clipboard.writeText(payAddress); ok = true; } catch (e) { /* 部分内置浏览器不支持，改用选中复制 */ }
+    if (!ok) {
+      try {
+        const range = document.createRange(); range.selectNodeContents(payAddressEl);
+        const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+        ok = document.execCommand('copy');
+      } catch (e) { ok = false; }
+    }
+    copyBtn.textContent = ok ? 'Copied' : 'Press and hold to copy';
+    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2500);
+  });
+
+  // ---- 规则与隐私：弹窗阅读，点「I have read and agree」后自动勾选 ----
+  const consentBox = document.getElementById('consent');
+  const rulesModal = document.getElementById('rules-modal');
+  const rulesBody = document.getElementById('rules-body');
+  let rulesLoaded = false;
+  let rulesFailed = false;
+  let gateTimer = null;
+  function closeRules() {
+    clearInterval(gateTimer);
+    rulesModal.hidden = true;
+    document.body.style.overflow = '';
+  }
+  function gateAgree() {
+    // 「我已阅读并同意」按钮：要拉到底、并且至少等 3 秒才能点（规则很短、不用拉时也要等 3 秒）
+    const agree = rulesBody.querySelector('.rules-agree');
+    if (!agree) return;
+    const base = agree.dataset.label;
+    let seconds = 3;
+    let atBottom = false;
+    const update = () => {
+      agree.disabled = !(atBottom && seconds <= 0);
+      agree.textContent = seconds > 0 ? base + ' (' + seconds + ')' : base;
+    };
+    const checkBottom = () => {
+      atBottom = rulesBody.scrollHeight - rulesBody.scrollTop - rulesBody.clientHeight < 8;
+      update();
+    };
+    rulesBody.onscroll = checkBottom;
+    clearInterval(gateTimer);
+    gateTimer = setInterval(() => { seconds -= 1; if (seconds <= 0) clearInterval(gateTimer); update(); }, 1000);
+    rulesBody.scrollTop = 0;
+    checkBottom();
+  }
+  async function openRules() {
+    rulesModal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    if (rulesLoaded) { gateAgree(); return; }
+    try {
+      const r = await fetch('rules.html', { cache: 'no-cache' });
+      if (!r.ok) throw new Error('load failed');
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const list = doc.querySelector('.qa-list');
+      if (!list) throw new Error('no content');
+      rulesBody.innerHTML = list.innerHTML;
+      const agree = document.createElement('button');
+      agree.type = 'button';
+      agree.className = 'btn btn-block rules-agree';
+      agree.dataset.label = 'I have read and agree';
+      agree.disabled = true;
+      agree.textContent = 'I have read and agree';
+      agree.addEventListener('click', () => { consentBox.checked = true; closeRules(); });
+      rulesBody.appendChild(agree);
+      rulesLoaded = true;
+      gateAgree();
+    } catch (e) {
+      // 加载失败：改为新窗口打开规则页，并允许直接勾选
+      rulesFailed = true;
+      closeRules();
+      window.open('rules.html', '_blank', 'noopener');
+    }
+  }
+  consentBox.addEventListener('click', (e) => {
+    // 点击后变成已勾选 = 还没读过：先弹出规则，读完点按钮才会勾上；已勾选时点击则取消勾选
+    if (consentBox.checked && !rulesFailed) { e.preventDefault(); openRules(); }
+  });
+  const consentLink = document.querySelector('.consent a');
+  if (consentLink) consentLink.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); openRules(); });
+  document.getElementById('rules-close').addEventListener('click', closeRules);
+  rulesModal.addEventListener('click', (e) => { if (e.target === rulesModal) closeRules(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !rulesModal.hidden) closeRules(); });
+
+  // 表单提交处理
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (preparing) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const isMatch = topicSelect.value === MATCH_TOPIC;
+    if (isMatch && !document.getElementById('consent').checked) {
+      status.className = "status-msg error";
+      status.innerText = "Please check the box to agree to the Rules & Privacy.";
+      status.style.display = "block";
+      return;
+    }
+    if (isMatch && (!payAddress || !selectedImage)) {
+      status.className = "status-msg error";
+      status.innerText = !payAddress ? "The payment address has not loaded. Please refresh the page and try again." : "Please upload your transfer screenshot.";
+      status.style.display = "block";
+      return;
+    }
+
+    btn.disabled = true;
+    btn.innerText = "Submitting...";
+    status.style.display = "none";
+
+    const waitMs = MIN_FILL_MS - (Date.now() - PAGE_OPENED);
+    if (waitMs > 0) await new Promise((resolve) => setTimeout(resolve, waitMs));
+
+    // 智能提取主域名
+    const hostname = window.location.hostname;
+    let currentDomain = 'antaiy.com'; // 本地测试默认回退域名
+
+    if (hostname && hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      const parts = hostname.split('.');
+      if (parts.length >= 2) {
+        currentDomain = parts.slice(-2).join('.');
+      }
+    }
+
+    try {
+      let screenshot = null;
+      if (selectedImage) {
+        screenshot = {
+          name: selectedImage.name,
+          type: selectedImage.type,
+          data: await fileToBase64(selectedImage)
+        };
+      }
+
+      const payload = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        topic: document.getElementById('topic').value,
+        message: document.getElementById('message').value.trim(),
+        domain: currentDomain,
+        language: document.getElementById('language').value,
+        screenshot: screenshot,
+        payAddress: isMatch ? payAddress : "",
+        consent: isMatch ? RULES_VERSION : "",
+        hp_url: document.getElementById('hp_url').value,
+        fillMs: Date.now() - PAGE_OPENED
+      };
+
+      const res = await fetch(WORKER_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        status.className = "status-msg success";
+        status.innerText = (result.repeat && result.message) ? result.message : payload.topic === '注册匹配'
+          ? "Received. Your match number has been sent to your email, and you will join the queue once it is verified. If you do not see the email within a few minutes, please check your spam folder and add ceo@antaiy.com to your contacts."
+          : "Thank you! A confirmation email is on its way to your inbox.";
+        status.style.display = "block";
+
+        form.reset();
+        updateMode();
+        selectedImage = null;
+        imagePreview.src = '';
+        previewContainer.style.display = 'none';
+      } else {
+        throw new Error(result.message || result.error || "Submission failed. Please try again later.");
+      }
+    } catch (err) {
+      status.className = "status-msg error";
+      status.innerText = err.message;
+      status.style.display = "block";
+    } finally {
+      btn.disabled = false;
+      btn.innerText = "Submit";
+    }
+  });
+  updateMode();
+</script>
+
+</body>
+</html>

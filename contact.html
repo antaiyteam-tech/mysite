@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="alternate" hreflang="en" href="https://www.antaiy.com/contact.html">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.antaiy.com/zh/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://www.antaiy.com/contact.html">
+  <meta name="description" content="How to reach antaiy: Telegram group, email and X.">
+  <title>Contact Us | antaiy AI Co-creation</title>
+  <link rel="stylesheet" href="styles.css?v=28">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Back to home"><img class="mark-img" src="antaiy-logo.svg?v=2" width="42" height="42" alt=""><span class="brand-text">antaiy AI Co-creation</span></a>
+      <div class="bar-right">
+        <nav class="top-nav" aria-label="Main navigation">
+        <a href="rules.html">Rules &amp; Privacy</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+        <a class="lang" href="zh/contact.html" hreflang="zh-CN" lang="zh-CN" aria-label="切换到中文">中文</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="sr-only">Contact Us</h1>
+
+    <section class="wrap qa-section" aria-label="Contact channels">
+      <div class="qa-list">
+        <article class="qa-item"><h2 class="qa-q">Official email</h2><p class="qa-a contact-row"><button class="copy-btn copy-sm" type="button" data-copy="ceo@antaiy.com" data-done="Copied" data-fail="Press and hold to copy" aria-label="Copy email">Copy</button><a class="contact-link" href="mailto:ceo@antaiy.com">ceo@antaiy.com</a></p></article>
+        <article class="qa-item"><h2 class="qa-q">Telegram group</h2><p class="qa-a contact-row"><button class="copy-btn copy-sm" type="button" data-copy="https://t.me/antaiy_com" data-done="Copied" data-fail="Press and hold to copy" aria-label="Copy Telegram link">Copy</button><a class="contact-link" href="https://t.me/antaiy_com/1" target="_blank" rel="noopener">t.me/antaiy_com</a></p></article>
+        <article class="qa-item"><h2 class="qa-q">X (official account)</h2><p class="qa-a contact-row"><button class="copy-btn copy-sm" type="button" data-copy="https://x.com/antaiycom" data-done="Copied" data-fail="Press and hold to copy" aria-label="Copy X link">Copy</button><a class="contact-link" href="https://x.com/antaiycom" target="_blank" rel="noopener">@antaiycom</a></p></article>
+        <article class="qa-item qa-item-session"><h2 class="qa-q">Session <span class="qa-q-sub">(<a class="contact-link" href="https://getsession.org/download" target="_blank" rel="noopener">Download Session</a>)</span></h2><p class="qa-a contact-row"><button class="copy-btn copy-sm" type="button" data-copy="054a2864cb68543d2a1e3bc4e1ad36bb04372847176997fd2c40851ceab44b8323" data-done="Copied" data-fail="Press and hold to copy" aria-label="Copy Session ID">Copy</button><span class="session-id">054a2864cb68543d2a1e3bc4e1ad36bb04372847176997fd2c40851ceab44b8323</span></p><p class="qa-a session-dl">Add this Session ID in the Session app to contact us.</p></article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav class="foot-nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="rules.html">Rules &amp; Privacy</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <p class="copy">© 2026 antaiy</p>
+      <p class="disclaimer">We don’t guarantee income. Not investment advice.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script>
+    // 向下滚动一小段后显示「回到顶部」，回到页面顶部时自动隐藏
+    (function () {
+      var btn = document.getElementById('to-top');
+      var ticking = false;
+      function update() { btn.classList.toggle('is-visible', window.scrollY > 160); ticking = false; }
+      window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      btn.addEventListener('click', function () { window.scrollTo({ top: 0 }); }); // 平滑滚动由 CSS 的 scroll-behavior 控制
+      update();
+    })();
+  </script>
+  <script>
+    // 复制按钮：先用剪贴板接口，不行就用旧方法；都不行就提示长按（部分内置浏览器不支持一键复制）
+    (function () {
+      function legacyCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+        document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, text.length);
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        return ok;
+      }
+      function selectText(node) {
+        if (!node || !window.getSelection) return;
+        var r = document.createRange(); r.selectNodeContents(node);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }
+      Array.prototype.forEach.call(document.querySelectorAll('.copy-btn[data-copy]'), function (b) {
+        var label = b.textContent, timer;
+        function flash(msg) {
+          b.textContent = msg;
+          clearTimeout(timer);
+          timer = setTimeout(function () { b.textContent = label; }, 1800);
+        }
+        b.addEventListener('click', function () {
+          var text = b.getAttribute('data-copy');
+          function fallback() {
+            if (legacyCopy(text)) { flash(b.getAttribute('data-done')); }
+            else { selectText(b.nextElementSibling); flash(b.getAttribute('data-fail')); }
+          }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () { flash(b.getAttribute('data-done')); }, fallback);
+          } else { fallback(); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
